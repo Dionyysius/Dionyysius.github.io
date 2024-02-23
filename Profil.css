@@ -1,0 +1,17 @@
+.gambar-container {
+  display: flex;
+}
+
+.gambar {
+  flex: 1;
+  margin-right: 10px; /* Jarak antara gambar */
+}
+
+.gambar:last-child {
+  margin-right: 0; /* Tidak ada margin kanan untuk gambar terakhir */
+}
+
+.gambar img {
+  max-width: 100%;
+  height: auto;
+}
