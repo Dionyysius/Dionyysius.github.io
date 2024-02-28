@@ -10,7 +10,7 @@ function createTextBoxes(count){
     container.innerHTML='';
     for(var i = 0; i < count; i++){
         var label = document.createElement('label');
-        label.textContent = 'Text'+(i+1);
+        label.textContent = 'Pilihan '+(i+1)+' : ';
         container.appendChild(label);
 
         var input = document.createElement('input');
