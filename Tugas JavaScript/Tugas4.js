@@ -16,7 +16,7 @@ function createTextBoxes(count){
         var input = document.createElement('input');
         input.type = 'text';
         input.name = 'textbox'+(i+1);
-        input.placeholder = 'Text'+(i+1);
+        input.placeholder = 'Pilihan '+(i+1);
         container.appendChild(input);
 
         container.appendChild(document.createElement('br'));
@@ -25,7 +25,7 @@ function createTextBoxes(count){
     buttonn.name='buttonn';
     buttonn.textContent='OK';
     buttonn.addEventListener('click', function(){
-        createRadioButton(count);
+        createRadioButton(this,count);
 
     });
     
@@ -35,11 +35,12 @@ function createTextBoxes(count){
     createRadioButton(count);
 };
 
-function createRadioButton(x){
-    var container = document.getElementById('radiobutton-container');
+function createRadioButton(button,x){
+    var container = button.parentNode;
+    //var container = document.getElementById('radiobutton-container');
     container.innerHTML='';
     var label = document.createElement('label');
-    label.textContent = 'Pilihan';
+    label.textContent = 'Pilihan : ';
     container.appendChild(label);
     for(var i = 0; i < x; i++){
         var radioYes = document.createElement('input');
