@@ -1,7 +1,6 @@
 :root{
   --primColor: skyblue;
-  --secoColor: white
-  ;
+  --secoColor: white;
   --cornerRad: 4px;
 }
 
@@ -127,10 +126,12 @@ details[open]::before{
 
 .headsetting{
   font-style: italic; 
-  color: wheat; 
+  color: black; 
   position:relative;
   
+  
 }
+
 .headgif{
   margin-top: 150px;
 }
