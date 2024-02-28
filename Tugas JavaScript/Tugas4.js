@@ -46,7 +46,15 @@ function createRadioButton(p){
         radioYes.type = 'radio';
         radioYes.name = 'radio_group'+(i+1);
         radioYes.value = 'yes';
-        container.appendChild();
+        container.appendChild(radioYes);
+        container.appendChild(document.createTextNode('Yes'));
+
+        var radioYes = document.createElement('input');
+        radioNo.type = 'radio';
+        radioNo.name = 'radio_group'+(i+1);
+        radioNo.value = 'No';
+        container.appendChild(radioNo);
+        container.appendChild(document.createTextNode('No'));
 
         container.appendChild(document.createElement('br'));
     }
