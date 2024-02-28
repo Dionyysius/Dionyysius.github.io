@@ -26,7 +26,8 @@ function createTextBoxes(count){
     btn.textContent='OK';
     container.appendChild(btn);
 
-    
+
+    createRadioButton(count);
 };
 
 document.getElementById('buttonn').addEventListener('click',function(event){
@@ -37,7 +38,7 @@ document.getElementById('buttonn').addEventListener('click',function(event){
 function createRadioButton(p){
     var container = document.getElementById('radiobutton-container');
     container.innerHTML='';
-    for(var i = 0; i < count; i++){
+    for(var i = 0; i < p; i++){
         var label = document.createElement('label');
         label.textContent = 'Text'+(i+1);
         container.appendChild(label);
