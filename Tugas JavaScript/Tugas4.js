@@ -32,12 +32,12 @@ function createTextBoxes(count){
     container.appendChild(buttonn);
 
 
-    createRadioButton(count);
+
 };
 
 function createRadioButton(button,x){
-    var container = button.parentNode;
-    //var container = document.getElementById('radiobutton-container');
+    //var container = button.parentNode;
+    var container = document.getElementById('radiobutton-container');
     container.innerHTML='';
     var label = document.createElement('label');
     label.textContent = 'Pilihan : ';
@@ -54,10 +54,10 @@ function createRadioButton(button,x){
 
         container.appendChild(document.createElement('br'));
     }
-    var btn = document.createElement('button');
-    btn.name='buttonn';
-    btn.textContent='OK';
-    container.appendChild(btn);
+    var butn = document.createElement('button');
+    butn.name='buttonnn';
+    butn.textContent='OK';
+    container.appendChild(butn);
 
 
 };
