@@ -26,7 +26,7 @@ function createTextBoxes(count){
     buttonn.name='buttonn';
     buttonn.textContent='OK';
     container.appendChild(buttonn);
-    container.appendChild(Document.createElement('br'));
+    container.appendChild(document.createElement('br'));
     buttonn.addEventListener('click', function(){
         createRadioButton(this,count);
 
@@ -45,6 +45,7 @@ function createRadioButton(button,x){
     var label = document.createElement('label');
     label.textContent = 'Pilihan : ';
     container.appendChild(label);
+    container.appendChild(document.createElement('br'));
     for(var i = 0; i < x; i++){
         var radioYes = document.createElement('input');
         radioYes.type = 'radio';
