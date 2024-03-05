@@ -79,3 +79,48 @@ body {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+.buttonn{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+/* CSS untuk elemen-elemen yang ditambahkan melalui JavaScript */
+
+/* Style untuk kotak input tambahan */
+.dynamic-input {
+    margin-bottom: 10px; /* Jarak antara kotak input tambahan */
+}
+
+.dynamic-input label {
+    display: block; /* Membuat label menjadi blok untuk memisahkan antar elemen */
+}
+
+.dynamic-input input[type="text"] {
+    width: 100%; /* Lebar input dinamis */
+    padding: 8px; /* Padding input dinamis */
+    border: 1px solid #ccc; /* Border input dinamis */
+    border-radius: 5px; /* Border radius input dinamis */
+    margin-bottom: 5px; /* Jarak bawah input dinamis */
+}
+
+/* Style untuk tombol tambahan */
+.dynamic-button {
+    background-color: #007bff; /* Warna latar belakang tombol tambahan */
+    color: #fff; /* Warna teks tombol tambahan */
+    border: none; /* Tidak ada border pada tombol tambahan */
+    border-radius: 5px; /* Border radius tombol tambahan */
+    padding: 8px 16px; /* Padding tombol tambahan */
+    cursor: pointer; /* Mengubah kursor menjadi pointer saat diarahkan ke tombol tambahan */
+    transition: background-color 0.3s ease; /* Transisi warna latar belakang tombol tambahan */
+    margin-top: 10px; /* Jarak atas tombol tambahan */
+}
+
+.dynamic-button:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol tambahan saat dihover */
+}

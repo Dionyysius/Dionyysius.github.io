@@ -22,22 +22,25 @@ function createTextBoxes(count){
         container.appendChild(document.createElement('br'));
     }
     var buttonn = document.createElement('button');
+    buttonn.id='buttonOk';
     buttonn.name='buttonn';
     buttonn.textContent='OK';
+    container.appendChild(buttonn);
+    container.appendChild(Document.createElement('br'));
     buttonn.addEventListener('click', function(){
         createRadioButton(this,count);
 
     });
     
-    container.appendChild(buttonn);
+    
 
 
 
 };
 
 function createRadioButton(button,x){
-    //var container = button.parentNode;
-    var container = document.getElementById('radiobutton-container');
+    var container = button.parentNode;
+    //var container = document.getElementById('radiobutton-container');
     container.innerHTML='';
     var label = document.createElement('label');
     label.textContent = 'Pilihan : ';
