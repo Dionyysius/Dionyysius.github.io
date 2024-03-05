@@ -92,6 +92,7 @@ function textRadio() {
             if (radio[i-1].checked){ // Menggunakan radio[i-1] karena kita menggunakan radio array
                 pilihan = data[i-1];
                 console.log(pilihan);
+                //tampilkanData();
             }
         }
         tampilkanData();
@@ -100,7 +101,7 @@ function textRadio() {
 
 
 
-function tampilkanData() {
+function tampilkanData(pilihan) {
     var nama = document.getElementById("username").value;
     var jumlah = parseInt(document.getElementById("jumlah").value);
     var teksPilihan = "";
@@ -114,12 +115,19 @@ function tampilkanData() {
     }
 
     var pilihan = document.querySelector('input[name="radiobutton"]:checked');
-
+    for (var i = 1; i <= jumlah; i++) {
+        if (radio[i-1].checked){ // Menggunakan radio[i-1] karena kita menggunakan radio array
+            pilihan = data[i-1];
+            console.log(pilihan);
+            //tampilkanData();
+        }
+    }
     var hasil = "Hallo, nama saya " + nama + ", saya mempunyai sejumlah " + jumlah + " pilihan yaitu " + teksPilihan;
     if (pilihan) {
-        hasil += ", dan saya memilih " + pilihan.value;
+        hasil += ", dan saya memilih " + pilihan;
     }
     else {
+        
         hasil += ", dan saya belum memilih pilihan.";
     }
 
