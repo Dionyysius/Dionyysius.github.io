@@ -4,6 +4,7 @@ var radio = [];
 var pilihan;
 
 document.getElementById('btn').addEventListener('click', function(event){
+    this.remove();
     event.preventDefault(); 
     textInput();
 });
@@ -18,11 +19,13 @@ function textInput() {
 
     for (var i = 1; i <= jumlah; i++) {
         var label = document.createElement("label");
+        label.id = "label1";
         label.innerHTML = "Pilihan " + i + ":";
 
         input[i-1] = document.createElement("input");
         input[i-1].type = "text"; // Mengubah input.type menjadi "text"
         input[i-1].name = "teksTampilan" + i;
+        input[i-1].id = "teksTampilan";
 
         tampilanInputs.appendChild(label);
         tampilanInputs.appendChild(input[i-1]);
@@ -38,6 +41,7 @@ function textInput() {
     tampilanInputs.appendChild(document.createElement("br"));
 
     document.getElementById("buttonOK").addEventListener("click", function(e){
+        this.remove();
         for (var i = 1; i <= jumlah; i++) {
             data[i-1] = input[i-1].value;
         }
@@ -53,10 +57,12 @@ function textRadio() {
 
     for (var i = 1; i <= jumlah; i++) {
         var label = document.createElement("label");
-        label.innerHTML ='<input type = "Radio" name = "teksTampilan" id = "Radio'+i+'">' + " Pilihan " + i;
+        label.innerHTML ='<input type = "Radio" name = "teksTampilan" id = "Radio'+i+'">' + data[i-1];
         label.setAttribute("for", "pilihan" + i);
 
         tampilanInputs.appendChild(label);
+        tampilanInputs.appendChild(document.createElement("br"));
+
     }
 
     for (var i = 1; i <= jumlah; i++) { // Memperbaiki perulangan di sini
@@ -86,6 +92,7 @@ function textRadio() {
     var div = document.createElement("div");
     div.id = "Last";
     document.getElementById("buttonLast").addEventListener("click", function(e){
+        this.remove();
         pilihan = '';
         console.log(e);
         for (var i = 1; i <= jumlah; i++) {
@@ -130,7 +137,7 @@ function tampilkanData(pilihan) {
         
         hasil += ", dan saya belum memilih pilihan.";
     }
-
+    hasil.id="hasil";
     document.getElementById("hasil").innerHTML = hasil;
 }
 
