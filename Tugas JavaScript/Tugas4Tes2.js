@@ -3,7 +3,24 @@ var data = [];
 var radio = [];
 var pilihan;
 
-document.getElementById('btn').addEventListener('click', function(event){
+
+var nama = document.getElementById('username');
+var jumlah = document.getElementById('jumlah');
+var button1 = document.getElementById('btn');
+
+nama.addEventListener('input',validateInputs);
+jumlah.addEventListener('input',validateInputs);
+
+function validateInputs(){
+    if(nama !== '' && jumlah !== ''){
+        button1.disabled = false;
+    }else{
+        button1.disabled = true;
+    }
+}
+
+
+button1.addEventListener('click', function(event){
     this.remove();
     event.preventDefault(); 
     textInput();
