@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>App Cuaca</title>
-        <link rel="stylesheet" href="UTSStyle.css"> 
+        <link rel="stylesheet" href="cuacaStyle.css"> 
 
     </head>
     <body>
@@ -14,7 +14,7 @@
             </div>
             <div class="weather">
                 <img src="" class="weather-icon">
-                <h1 class="temp">22</h1>
+                <h1 class="temp">22°C</h1>
                 <h2 class="city">New York</h2>
                 <div class="detail">
                     <div class="col">
@@ -43,6 +43,9 @@
         const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
         const searchBox = document.querySelector(".search input"); 
         const searchBtn = document.querySelector(".search button"); 
+        const weatherIcon = document.querySelector("weatherIcon");
+
+
         async function checkWeather(city){
             const response = await fetch(apiUrl + city +  '&appid=' + apiKey);
             var data = await response.json();
@@ -53,7 +56,9 @@
             document.querySelector(".humidity").innerHTML= data.main.humidity + "%";
             document.querySelector(".wind").innerHTML= data.wind.speed + "km/h";
             
-            
+            if(data.weather[0].main == "Clouds"){
+                weatherIcon.src = "";
+            }
             
         }
         searchBtn.addEventListener("click",()=>{
