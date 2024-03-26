@@ -11,20 +11,22 @@ body{
     background-size: 100%;
 }
 .card{
-    width: 90%;
+    width: 500px;
     max-width: 390px;
     background: linear-gradient(135deg,#00feba, #5b548a);
+    background-image: url('wallpaperflare.com_wallpaper\ \(1\).jpg');
+    background-size: 480px;
     color: #fff;
-    margin: 100px auto 0;
-    border-radius: 20px;
-    padding: 40px 35px;
+    margin: 150px auto 0;
+    border-radius: 25px;
+    padding: 75px 65px;
     text-align: center;
 
 }
 
 .stopwatch h1{
-    margin-top: 60px;
-    font-size: 64px;
+    margin-top: 70px;
+    font-size: 74px;
     font-weight: 300;
 }
 .buttons{
