@@ -7,18 +7,36 @@
 }
 
 body{
-    background: #222;
+    background-image: url('wallpaperflare.com_wallpaper.jpg');
+    background-size: 100%;
 }
 .card{
-    width: 90%;
-    max-width: 390px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 1000px;
     background: linear-gradient(135deg,#00feba, #5b548a);
+    background-image: url('morning.jpg');
+    background-size: cover;
     color: #fff;
     margin: 100px auto 0;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
 
+}
+
+.card.pm {
+    width: 100%;
+    max-width: 580px;
+    max-height: 1000px;
+    background: linear-gradient(135deg,#00feba, #5b548a);
+    background-size: cover;
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    background-image: url('Nigth.jpg'); 
 }
 .datetime{
     color: #fff;

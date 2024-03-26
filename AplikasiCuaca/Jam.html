@@ -43,6 +43,14 @@
                         pe="PM";
                     }
 
+                    var card = document.querySelector('.card');
+                    if(pe === 'PM'){
+                        card.classList.add('pm');
+
+                    }else{
+                        card.classList.remove('pm');
+                    }
+
                     Number.prototype.pad = function(digits){
                         for(var n = this.toString();n.length<digits;n=0+n);
                         return n;
