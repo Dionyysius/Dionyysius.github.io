@@ -1,74 +1,125 @@
-window.addEventListener('load', () => {
-    const form = document.querySelector("#new-task-form");
-    const input = document.querySelector("#new-task-input");
-    const list_el = document.querySelector("#tasks");
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('#new-task-form');
+    const input = document.querySelector('#new-task-input');
+    const tasksDiv = document.querySelector('#tasks');
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const task = input.value;
+        if (input.value.trim()) {
+            const task = input.value.trim();
 
-        const task_el = document.createElement('div');
-        task_el.classList.add('task');
+            // Send a POST request to add the new task
+            fetch('your-php-file.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    action: 'add_task',
+                    new-task-input: task
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.startsWith('Task added successfully')) {
+                    // Create a new task element and append it to the tasksDiv
+                    const taskEl = createTaskElement(task);
+                    tasksDiv.appendChild(taskEl);
 
-        const task_content_el = document.createElement('div');
-        task_content_el.classList.add('content');
-
-        task_el.appendChild(task_content_el);
-
-        const task_input_el = document.createElement('input');
-        task_input_el.classList.add('text');
-        task_input_el.type = 'text';
-        task_input_el.value = task;
-        task_input_el.setAttribute('readonly', 'readonly');
-
-        task_content_el.appendChild(task_input_el);
-
-        const task_actions_el = document.createElement('div');
-        task_actions_el.classList.add('actions');
-        
-        const task_edit_el = document.createElement('button');
-        task_edit_el.classList.add('edit');
-        task_edit_el.innerText = 'Edit';
-
-        const task_delete_el = document.createElement('button');
-        task_delete_el.classList.add('delete');
-        task_delete_el.innerText = 'Delete';
-
-        const task_done_el = document.createElement('button'); // Tambahkan tombol "Selesai"
-        task_done_el.classList.add('done');
-        task_done_el.innerText = 'Done';
-
-        task_actions_el.appendChild(task_edit_el);
-        task_actions_el.appendChild(task_done_el); // Tambahkan tombol "Selesai"
-        task_actions_el.appendChild(task_delete_el);
-
-        task_el.appendChild(task_actions_el);
-
-        list_el.appendChild(task_el);
-
-        input.value = '';
-
-        task_edit_el.addEventListener('click', (e) => {
-            if (task_edit_el.innerText.toLowerCase() == "edit") {
-                task_edit_el.innerText = "Save";
-                task_input_el.removeAttribute("readonly");
-                task_input_el.focus();
-            } else {
-                task_edit_el.innerText = "Edit";
-                task_input_el.setAttribute("readonly", "readonly");
-            }
-        });
-
-        task_delete_el.addEventListener('click', (e) => {
-            list_el.removeChild(task_el);
-        });
-
-        task_done_el.addEventListener('click', (e) => { // Tambahkan event listener untuk tombol "Selesai"
-            task_input_el.style.textDecoration = 'line-through'; // Tandai teks tugas sebagai selesai
-            task_input_el.setAttribute('readonly', 'readonly'); // Matikan kemampuan untuk mengedit teks tugas
-            task_edit_el.style.display = 'none'; // Sembunyikan tombol "Edit"
-            task_done_el.style.display = 'none'; // Sembunyikan tombol "Selesai"
-        });
+                    // Clear the input field
+                    input.value = '';
+                } else {
+                    console.error(data);
+                }
+            });
+        }
     });
+
+    tasksDiv.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const button = e.target;
+            const taskEl = button.closest('.task');
+            const taskId = taskEl.dataset.taskId;
+
+            if (button.classList.contains('delete')) {
+                // Send a POST request to delete the task
+                fetch('your-php-file.php', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        action: 'delete_task',
+                        task_id: taskId
+                    })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data.startsWith('Task deleted successfully')) {
+                        taskEl.remove();
+                    } else {
+                        console.error(data);
+                    }
+                });
+            } else if (button.classList.contains('done')) {
+                // Send a POST request to mark the task as completed
+                fetch('your-php-file.php', {
+                    method: 'POST',
+                    body: new URLSearchParams({
+                        action: 'mark_completed',
+                        task_id: taskId
+                    })
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data.startsWith('Task marked as completed')) {
+                        taskEl.classList.add('completed');
+                        button.style.display = 'none';
+                    } else {
+                        console.error(data);
+                    }
+                });
+            }
+        }
+    });
+
+    function createTaskElement(task) {
+        const taskEl = document.createElement('div');
+        taskEl.classList.add('task');
+        taskEl.dataset.taskId = generateUniqueId();
+
+        const taskContentEl = document.createElement('div');
+        taskContentEl.classList.add('content');
+
+        const taskInputEl = document.createElement('input');
+        taskInputEl.classList.add('text');
+        taskInputEl.type = 'text';
+        taskInputEl.value = task;
+        taskInputEl.setAttribute('readonly', 'readonly');
+
+        taskContentEl.appendChild(taskInputEl);
+        taskEl.appendChild(taskContentEl);
+
+        const taskActionsEl = document.createElement('div');
+        taskActionsEl.classList.add('actions');
+
+        const taskEditEl = document.createElement('button');
+        taskEditEl.classList.add('edit');
+        taskEditEl.innerText = 'Edit';
+
+        const taskDeleteEl = document.createElement('button');
+        taskDeleteEl.classList.add('delete');
+        taskDeleteEl.innerText = 'Delete';
+
+        const taskDoneEl = document.createElement('button');
+        taskDoneEl.classList.add('done');
+        taskDoneEl.innerText = 'Done';
+
+        taskActionsEl.appendChild(taskEditEl);
+        taskActionsEl.appendChild(taskDoneEl);
+        taskActionsEl.appendChild(taskDeleteEl);
+
+        taskEl.appendChild(taskActionsEl);
+
+        return taskEl;
+    }
+
+    function generateUniqueId() {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
 });
